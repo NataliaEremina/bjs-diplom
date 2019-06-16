@@ -55,4 +55,64 @@ return ApiConnector.getStocks((err, data) => {
 });	
 }
 
-let Stocks = getStocks ();
+let Stocks = getStocks (err, data);
+
+function main() {
+
+    let Ivan = new Profile({
+                    username: 'Ivan',
+                    name: {firstName: 'Ivan', lastName: 'Ivanov'},
+                    password: 'password1',
+                });
+
+    let Victor  = new Profile({
+                    username: 'Victor',
+                    name: {firstName: 'Victor', lastName: 'Petrov'},
+                    password: 'password2',
+                });
+
+
+    Ivan.createUser((err,data) => {
+        if (err) {
+            console.error('Creating Ivan error');
+        } else {
+            console.log(`Ivan is created`);
+            Ivan.performLogin((err,data) => {
+                if (err) {
+                    console.error('Authorization error');
+                } else {
+                    console.log(`Ivan is authorized`);
+                    Ivan.addMoney({ currency: 'RUB', amount: 100000 }, (err, data) => {
+                        if (err) {
+                            console.error('Error during adding money to Ivan');
+                        } else {
+                            console.log(`Added 100000 rubles to Ivan`);
+                            Ivan.convertMoney({ fromCurrency: 'RUB', targetCurrency: 'NETCOIN' , targetAmount: 10000 * Stocks.RUB_NETCOIN }, (err,data) => {
+                                if (err) {
+                                    console.log('Сonverting error');
+                                } else {
+                                    console.log(`Converted to netcoin`);
+                                    Victor.createUser((err,data) => {
+                                if (err) {
+                                    console.log('Creating Victor error');
+                                } else {
+                                    console.log(`Victor is created`);
+                                    Ivan.transferMoney({ to: 'Victor', amount: 10 }, (err,data) => {
+                                if (err) {
+                                    console.log('Transfer error');
+                                } else {
+                                    console.log(`Victor get 10 NETCOIN`);
+                                }
+                                });
+                                }                   
+                                });
+                                }
+                                });
+                            }
+                    });
+                }
+            });
+        }
+    });    
+
+main();
