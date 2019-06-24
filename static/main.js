@@ -55,7 +55,13 @@ return ApiConnector.getStocks((err, data) => {
 });	
 }
 
-let Stocks = getStocks (err, data);
+let Stocks = getStocks ((err, data) => {
+    if (err) {
+        console.error('Error Getting stocks info');
+    } else {
+        Stocks = data;
+    }
+});
 
 function main() {
 
@@ -87,7 +93,7 @@ function main() {
                             console.error('Error during adding money to Ivan');
                         } else {
                             console.log(`Added 100000 rubles to Ivan`);
-                            Ivan.convertMoney({ fromCurrency: 'RUB', targetCurrency: 'NETCOIN' , targetAmount: 10000 * Stocks.RUB_NETCOIN }, (err,data) => {
+                            Ivan.convertMoney({ fromCurrency: 'RUB', targetCurrency: 'NETCOIN' , targetAmount: 100000 }, (err,data) => {
                                 if (err) {
                                     console.log('Сonverting error');
                                 } else {
