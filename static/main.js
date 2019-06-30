@@ -93,7 +93,7 @@ function main() {
                             console.error('Error during adding money to Ivan');
                         } else {
                             console.log(`Added 100000 rubles to Ivan`);
-                            Ivan.convertMoney({ fromCurrency: 'RUB', targetCurrency: 'NETCOIN' , targetAmount: 100000 }, (err,data) => {
+                            Ivan.convertMoney({ fromCurrency: 'RUB', targetCurrency: 'NETCOIN' , targetAmount: stocksInfo['EUR_NETCOIN'] * 100000 }, (err,data) => {
                                 if (err) {
                                     console.log('Сonverting error');
                                 } else {
@@ -103,11 +103,11 @@ function main() {
                                     console.log('Creating Victor error');
                                 } else {
                                     console.log(`Victor is created`);
-                                    Ivan.transferMoney({ to: 'Victor', amount: 10 }, (err,data) => {
+                                    Ivan.transferMoney({ to: 'Victor', amount: 1 }, (err,data) => {
                                 if (err) {
                                     console.log('Transfer error');
                                 } else {
-                                    console.log(`Victor get 10 NETCOIN`);
+                                    console.log(`Victor get 1 NETCOIN`);
                                 }
                                 });
                                 }                   
@@ -120,5 +120,5 @@ function main() {
             });
         }
     });    
-
+}
 main();
