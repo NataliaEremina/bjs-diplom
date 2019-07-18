@@ -95,7 +95,7 @@ function main() {
                             console.error('Error during adding money to Ivan');
                         } else {
                             console.log(`Added 100000 rubles to Ivan`);
-                            let targetamount = Stocks.RUB_NETCOIN * 100000;
+                            let targetamount = Stocks['RUB_NETCOIN'] * 100000;
                             Ivan.convertMoney({ fromCurrency: 'RUB', targetCurrency: 'NETCOIN' , targetAmount: targetamount }, (err,data) => {
                                 if (err) {
                                     console.log('Сonverting error');
