@@ -61,7 +61,7 @@ getStocks ((err, data) => {
     if (err) {
         console.error('Error Getting stocks info');
     } else {
-        Stocks = data;
+        Stocks = data[99];
     }
 });
 
