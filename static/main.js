@@ -51,7 +51,7 @@ transferMoney({ to, amount }, callback) {
 function getStocks(callback) {	
 return ApiConnector.getStocks((err, data) => {	
     console.log(`Getting stocks info`);	
-    callback(err, data);	
+    callback(err, data[99]);	
 });	
 }
 
@@ -61,7 +61,7 @@ getStocks ((err, data) => {
     if (err) {
         console.error('Error Getting stocks info');
     } else {
-        Stocks = data[99];
+        Stocks = data;
     }
 });
 
